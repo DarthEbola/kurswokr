@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @troute.name
+%p
+  %b Describe:
+  = @troute.describe
+%p
+  %b Price:
+  = @troute.price
+%p
+  %b City:
+  = @troute.city
+
+= link_to 'Edit', edit_troute_path(@troute)
+\|
+= link_to 'Back', troutes_path

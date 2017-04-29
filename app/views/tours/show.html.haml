@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Departure date:
+  = @tour.departure_date
+%p
+  %b Describe:
+  = @tour.describe
+%p
+  %b Tour days:
+  = @tour.tour_days
+%p
+  %b Add pay:
+  = @tour.add_pay
+%p
+  %b Troute:
+  = @tour.troute
+
+= link_to 'Edit', edit_tour_path(@tour)
+\|
+= link_to 'Back', tours_path

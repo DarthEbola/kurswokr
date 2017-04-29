@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170409205031) do
+ActiveRecord::Schema.define(version: 20170415134141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cities", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -31,6 +37,17 @@ ActiveRecord::Schema.define(version: 20170409205031) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "excursions", force: :cascade do |t|
+    t.float    "price",      null: false
+    t.text     "describe",   null: false
+    t.string   "name",       null: false
+    t.integer  "city_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "excursions", ["city_id"], name: "index_excursions_on_city_id", using: :btree
 
   create_table "role_users", force: :cascade do |t|
     t.integer  "role_id",    null: false
@@ -53,6 +70,29 @@ ActiveRecord::Schema.define(version: 20170409205031) do
 
   add_index "roles", ["info"], name: "index_roles_on_info", unique: true, using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", unique: true, using: :btree
+
+  create_table "tours", force: :cascade do |t|
+    t.datetime "departure_date"
+    t.text     "describe"
+    t.integer  "tour_days"
+    t.float    "add_pay"
+    t.integer  "troute_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "tours", ["troute_id"], name: "index_tours_on_troute_id", using: :btree
+
+  create_table "troutes", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.text     "describe",   null: false
+    t.float    "price",      null: false
+    t.integer  "city_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "troutes", ["city_id"], name: "index_troutes_on_city_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                                       null: false
@@ -95,6 +135,9 @@ ActiveRecord::Schema.define(version: 20170409205031) do
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
+  add_foreign_key "excursions", "cities"
   add_foreign_key "role_users", "roles"
   add_foreign_key "role_users", "users"
+  add_foreign_key "tours", "troutes"
+  add_foreign_key "troutes", "cities"
 end

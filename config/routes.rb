@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :tours
+  resources :troutes
+  resources :excursions
+  resources :cities
   resources :role_users
   resources :roles
   resources :password_resets

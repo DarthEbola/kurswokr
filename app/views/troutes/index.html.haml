@@ -1,0 +1,27 @@
+%h1 Listing troutes
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Describe
+      %th Price
+      %th City
+      %th
+      %th
+      %th
+
+  %tbody
+    - @troutes.each do |troute|
+      %tr
+        %td= troute.name
+        %td= troute.describe
+        %td= troute.price
+        %td= troute.city
+        %td= link_to 'Show', troute
+        %td= link_to 'Edit', edit_troute_path(troute)
+        %td= link_to 'Destroy', troute, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Troute', new_troute_path

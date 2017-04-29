@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  departure_date: 2017-04-15 16:41:41
+  describe: MyText
+  tour_days: 1
+  add_pay: 1.5
+  troute_id: 
+
+two:
+  departure_date: 2017-04-15 16:41:41
+  describe: MyText
+  tour_days: 1
+  add_pay: 1.5
+  troute_id: 

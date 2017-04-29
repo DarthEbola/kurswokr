@@ -1,0 +1,22 @@
+= form_for @troute do |f|
+  - if @troute.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@troute.errors.count, "error")} prohibited this troute from being saved:"
+      %ul
+        - @troute.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :describe
+    = f.text_area :describe
+  .field
+    = f.label :price
+    = f.text_field :price
+  .field
+    = f.label :city
+    = f.text_field :city
+  .actions
+    = f.submit 'Save'
